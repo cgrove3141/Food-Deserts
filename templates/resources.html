@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>Food Deserts</title>
+
+  <!-- Bring in our bootstrap stylesheet -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0" nonce="mmfV54o1"></script>
+
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="index.html">Food Desert Awareness</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="viz.html">Visualizations</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="resources.html">Get Involved!</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="api.html">API Documentation</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container-fluid main-page">
+<div class="row" id="first">
+  <div class="col-8">
+<h2 id="first">Let Your Voice Be Heard!</h2>
+<p>Let your congressperson know how important this issue is to you. Enter your Zip Code to get the contact information for your representative:
+  <form method="post" action="{{ url_for('resources') }}">
+      <fieldset>
+        <input name='zipcode' id="zipcode" value="">
+        <input type='submit' value='Enter Zip'>
+      </fieldset>
+  </form>
+  {% if results %}
+  <p><b>Call {{ results[0] }} {{ results[1] }} at {{ results[2] }}.</b></p>
+  {% endif %}
+  {% if errors %}
+  <p> {{errors}} </p>
+  {% endif %}
+</p>
+
+<p>Here are some resources that are helpul in understanding the issues around food deserts and how some areas have addressed them:
+<ol>
+  <li><a href="http://www.ccbh.net/wp-content/uploads/2017/09/policy-solutions-to-the-grocery-gap.pdf">Policy Solutions to the Grocery Gap</a></li>
+  <li><a href="https://civileats.com/2018/12/17/dollar-stores-are-taking-over-the-grocery-business-and-its-bad-news-for-public-health-and-local-economies/">Dollar Stores Are Taking Over the Grocery Business</a></li>
+  <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4977027/">A Study on Changes in Diet After Introducing a Supermarket to a Food Desert</a></li>
+  <li><a href="https://rachelcarsoncouncil.org/food-insecurity-environmental-justice-issue/">Is Food Justince an Environmental Justice Issue?</a></li>
+
+</ol>
+</p>
+<p>Get the word out on social media:</p>
+<p>
+<ul class="list-inline">
+<li><a href="https://twitter.com/intent/tweet?button_hashtag=FoodDesert&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-show-count="false">Tweet #FoodDesert</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></li>
+
+<li><div class="fb-share-button" data-href="http://127.0.0.1:5000/resources.html" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5000%2Fresources.html&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div></li>
+</p>
+</ul>
+</div>
+
+<div class="col-4">
+<div align="right">
+<script type="text/javascript" src="../static/js/news.js"></script>
+<script type="text/javascript" src="//feed.surfing-waves.com/js/rss-feed.js"></script> 
+<!-- The link below helps keep this service FREE, and helps other people find the SW widget. Please be cool and keep it! Thanks. --> 
+<div style="color:#ccc;font-size:10px; text-align:right; width:230px;">powered by <a href="https://surfing-waves.com" rel="noopener" target="_blank" style="color:#ccc;">Surfing Waves</a></div> </div>
+<!-- end sw-rss-feed code -->
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>Food Deserts</title>
+
+  <!-- Bring in our bootstrap stylesheet -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="index.html">Food Desert Awareness</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="viz.html">Visualizations</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="resources.html">Get Involved!</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="api.html">API Documentation</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container-fluid main-page">
+<h2 id="first">API Documentation</h2>
+<p>All API routes return the following information by census tract:
+<ul>
+<li>Cenusus Tract</li>
+<li>Zip Code</li>
+<li>Food Desert Status (defined as low income and low access tract measured at 1 mile for urban areas and 20 miles for rural areas)</li>
+<li>Congressional District</li>
+<li>Contact Info:<ul><li>Representative</li><li>Phone #</li></ul></li>
+<li>Population</li>
+<li>Link to County Map by Census Tract</li>
+</ul>
+</p>
+<p>The following routes can be used: 
+<ul>
+  <li>/api/v1.0/zipapi/[zip_code] to return all tracts in a given zip code</li><br>
+    <form method="post" action="{{ url_for('zipinputs') }}">
+      <fieldset>
+        <input name='zipcode' id="zipcode" value="">
+        <input type='submit' value='Try Zip API'>
+      </fieldset>
+    </form><br>
+  <li>/api/v1.0/stateapi/[state] to return all tracts in a given state</li><br>
+      <form method="post" action="{{ url_for('stateinputs') }}">
+      <fieldset>
+        <input name='state' id="state" value="">
+        <input type='submit' value='Try State API'>
+      </fieldset>
+    </form><br>
+  <li>/api/v1.0/tractapi/[census_tract] to return all tracts by tract number (there may be multiple values returned, as there can be several zip codes/congressional districts per tract.</li><br>
+      <form method="post" action="{{ url_for('tractinputs') }}">
+      <fieldset>
+        <input name='tract' id="tract" value="">
+        <input type='submit' value='Try Tract API'>
+      </fieldset>
+    </form>
+</ul>
+Additionally, by removing "api" from route, a user can access JSON style data as non-callable text within the confines of the webpage (e.g. /api/v1.0/zip/[zip_code])
+</p>
+
+</div>
+</body>
+</html>
